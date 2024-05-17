@@ -1,0 +1,16 @@
+networks:
+  bifrost:
+    name: bifrost
+
+services:
+
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    volumes:
+      - ./app/:/usr/local/apache2/htdocs/
+    ports:
+      - "20080:80"
+    networks:
+      - bifrost
