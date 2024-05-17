@@ -16,7 +16,7 @@
         },
         // Scripts do front
         {
-            "label": "docker build",
+            "label": "Front docker build",
             "type": "shell",
             "command": "docker",
             "args": ["build", "-t", "bifrostphp-front", "app"],
@@ -26,7 +26,7 @@
             }
         },
         {
-            "label": "docker run",
+            "label": "Front docker run",
             "type": "shell",
             "command": "docker",
             "args": ["run", "-d", "--name", "bifrostphp-front", "-p", "20080:80", "bifrostphp-front"],
