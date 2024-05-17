@@ -1,6 +1,20 @@
 {
     "version": "2.0.0",
     "tasks": [
+        // Scripts do bifrost
+        {
+            "label": "build containers",
+            "type": "shell",
+            "command": "docker-compose",
+            "args": [ "up", "--build", "-d"]
+        },
+        {
+            "label": "up containers",
+            "type": "shell",
+            "command": "docker-compose",
+            "args": ["up","-d"]
+        },
+        // Scripts do front
         {
             "label": "docker build",
             "type": "shell",
