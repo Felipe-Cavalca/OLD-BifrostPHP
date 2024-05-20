@@ -1,16 +1,48 @@
+volumes:
+  bifrost-storage:
+    name: bifrost-storage
+    labels:
+      com.description: "This volume is used for data storage"
+  bifrost-redis_data:
+    name: bifrost-redis_data
+    labels:
+      com.description: "This volume is used for Redis"
+
 networks:
-  bifrost:
-    name: bifrost
+  bifrost-network:
+    name: bifrost-network
 
 services:
-
   app:
     build:
       context: ./app
-      dockerfile: Dockerfile
-    volumes:
-      - ./app/:/usr/local/apache2/htdocs/
+      dockerfile: ./Dockerfile
     ports:
-      - "20080:80"
+      - "18080:80"
+    volumes:
+      - ./app:/usr/local/apache2/htdocs/
     networks:
-      - bifrost
+      - bifrost-network
+
+  api:
+    build:
+      context: ./api
+      dockerfile: ./Dockerfile
+    ports:
+      - "28080:80"
+    env_file:
+      - ./api/.env
+    volumes:
+      - ./api:/var/www/html
+      - bifrost-storage:/storage
+    networks:
+      - bifrost-network
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:latest
+    volumes:
+      - bifrost-redis_data:/data
+    networks:
+      - bifrost-network
