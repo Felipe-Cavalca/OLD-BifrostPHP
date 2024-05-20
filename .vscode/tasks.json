@@ -31,6 +31,12 @@
             "command": "docker",
             "args": ["run", "-d", "--name", "bifrostphp-front", "-p", "20080:80", "bifrostphp-front"],
             "dependsOn": ["docker build"]
+        },
+        {
+            "label": "back docker-compose up",
+            "type": "shell",
+            "command": "docker-compose",
+            "args": ["-f", "api/docker-compose.yml", "up", "--build", "-d"]
         }
     ]
 }
