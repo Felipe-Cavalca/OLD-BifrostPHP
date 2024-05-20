@@ -32,6 +32,7 @@
             "args": ["run", "-d", "--name", "bifrostphp-front", "-p", "20080:80", "bifrostphp-front"],
             "dependsOn": ["docker build"]
         },
+        // Scripts do back
         {
             "label": "back docker-compose up",
             "type": "shell",
