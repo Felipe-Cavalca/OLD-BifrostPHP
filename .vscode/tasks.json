@@ -6,37 +6,37 @@
             "label": "build containers",
             "type": "shell",
             "command": "docker-compose",
-            "args": [ "up", "--build", "-d"]
-        },
-        {
-            "label": "up containers",
-            "type": "shell",
-            "command": "docker-compose",
-            "args": ["up","-d"]
+            "args": [
+                "up",
+                "--build",
+                "-d"
+            ]
         },
         // Scripts do front
         {
-            "label": "Front docker build",
+            "label": "front docker-compose up",
             "type": "shell",
-            "command": "docker",
-            "args": ["build", "-t", "bifrostphp-front", "app"],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+            "command": "docker-compose",
+            "args": [
+                "-f",
+                "app/docker-compose.yml",
+                "up",
+                "--build",
+                "-d"
+            ]
         },
-        {
-            "label": "Front docker run",
-            "type": "shell",
-            "command": "docker",
-            "args": ["run", "-d", "--name", "bifrostphp-front", "-p", "20080:80", "bifrostphp-front"],
-            "dependsOn": ["docker build"]
-        },
+        // Scripts do back
         {
             "label": "back docker-compose up",
             "type": "shell",
             "command": "docker-compose",
-            "args": ["-f", "api/docker-compose.yml", "up", "--build", "-d"]
+            "args": [
+                "-f",
+                "api/docker-compose.yml",
+                "up",
+                "--build",
+                "-d"
+            ]
         }
     ]
 }
