@@ -6,7 +6,11 @@
             "label": "build containers",
             "type": "shell",
             "command": "docker-compose",
-            "args": [ "up", "--build", "-d"]
+            "args": [
+                "up",
+                "--build",
+                "-d"
+            ]
         },
         // Scripts do front
         {
@@ -26,7 +30,13 @@
             "label": "back docker-compose up",
             "type": "shell",
             "command": "docker-compose",
-            "args": ["-f", "app/docker-compose.yml", "up", "--build", "-d"]
+            "args": [
+                "-f",
+                "api/docker-compose.yml",
+                "up",
+                "--build",
+                "-d"
+            ]
         }
     ]
 }
